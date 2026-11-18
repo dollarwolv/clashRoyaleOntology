@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://example.org/clash.owl"
+         xmlns="http://example.org/clash.owl#">
+
+<owl:Ontology rdf:about="http://example.org/clash.owl"/>
+
+<owl:ObjectProperty rdf:about="#containsCard">
+  <rdfs:domain rdf:resource="#Deck"/>
+  <rdfs:range rdf:resource="#Card"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Card">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#AirTargetingCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Deck">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#DeckWithAirCoverage">
+  <rdfs:subClassOf rdf:resource="#Deck"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Deck"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#AirTargetingCard"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#Musketeer">
+  <rdf:type rdf:resource="#AirTargetingCard"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MusketeerDeck">
+  <rdf:type rdf:resource="#Deck"/>
+  <containsCard rdf:resource="#Musketeer"/>
+  <rdf:type rdf:resource="#DeckWithAirCoverage"/>
+</owl:NamedIndividual>
+
+
+</rdf:RDF>
