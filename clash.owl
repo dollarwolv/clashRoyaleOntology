@@ -17,12 +17,32 @@
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
+<owl:Class rdf:about="#Deck">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
 <owl:Class rdf:about="#AirTargetingCard">
   <rdfs:subClassOf rdf:resource="#Card"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Deck">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+<owl:Class rdf:about="#SpellCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#GroundTroopCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TankCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SwarmCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#FlyingCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
 </owl:Class>
 
 <owl:Class rdf:about="#DeckWithAirCoverage">
@@ -39,6 +59,10 @@
     </owl:Class>
   </owl:equivalentClass>
 </owl:Class>
+
+<owl:NamedIndividual rdf:about="#Arrows">
+  <rdf:type rdf:resource="#SpellCard"/>
+</owl:NamedIndividual>
 
 <owl:NamedIndividual rdf:about="#Musketeer">
   <rdf:type rdf:resource="#AirTargetingCard"/>

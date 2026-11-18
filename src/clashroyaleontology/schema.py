@@ -1,6 +1,5 @@
 from owlready2 import *
-
-onto = get_ontology("http://example.org/clash.owl")
+from base import onto
 
 with onto:
 
@@ -36,16 +35,3 @@ with onto:
 
     class DeckWithAirCoverage(Deck):
         equivalent_to = [Deck & containsCard.some(AirTargetingCard)]
-
-    # ABox
-    musketeer = AirTargetingCard("Musketeer")
-    arrows = SpellCard("Arrows")
-
-    deck1 = Deck("MusketeerDeck")
-    deck1.containsCard = [card_a]
-
-    sync_reasoner()
-
-print(isinstance(deck1, DeckWithAirCoverage))
-
-onto.save(file="clash.owl", format="rdfxml")
