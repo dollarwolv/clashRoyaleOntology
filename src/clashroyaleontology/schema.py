@@ -108,7 +108,7 @@ with onto:
         equivalent_to = [TroopCard & AirTargetingCard]
 
     class GroundDefenceCard(TroopCard, GroundTargetingCard):
-        equivalent_to = [TroopCard & AirTargetingCard]
+        equivalent_to = [TroopCard & GroundTargetingCard]
 
     class CounterPushTroop(TroopCard):
         pass

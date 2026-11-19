@@ -175,7 +175,16 @@
 </owl:Class>
 
 <owl:Class rdf:about="#GroundDefenceCard">
+  <rdfs:subClassOf rdf:resource="#TroopCard"/>
   <rdfs:subClassOf rdf:resource="#GroundTargetingCard"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#TroopCard"/>
+        <rdf:Description rdf:about="#GroundTargetingCard"/>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
 </owl:Class>
 
 <owl:Class rdf:about="#CounterPushTroop">
@@ -262,7 +271,7 @@
         </owl:Restriction>
         <owl:Restriction>
           <owl:onProperty rdf:resource="#containsCard"/>
-          <owl:someValuesFrom rdf:resource="#GroundDefenceCard"/>
+          <owl:someValuesFrom rdf:resource="#GroundTargetingCard"/>
         </owl:Restriction>
         <owl:Restriction>
           <owl:onProperty rdf:resource="#containsCard"/>
@@ -478,10 +487,10 @@
 
 <owl:NamedIndividual rdf:about="#Musketeer">
   <rdf:type rdf:resource="#Card"/>
-  <rdf:type rdf:resource="#AirTargetingCard"/>
+  <rdf:type rdf:resource="#SupportTroop"/>
   <rdf:type rdf:resource="#MediumSpellBaitCard"/>
   <rdf:type rdf:resource="#TroopCard"/>
-  <rdf:type rdf:resource="#SupportTroop"/>
+  <rdf:type rdf:resource="#AirTargetingCard"/>
   <rdf:type rdf:resource="#AirDefenceCard"/>
   <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasElixirCost>
   <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rare</hasRarity>
@@ -490,8 +499,8 @@
 <owl:NamedIndividual rdf:about="#Arrows">
   <rdf:type rdf:resource="#Card"/>
   <rdf:type rdf:resource="#AirTargetingCard"/>
-  <rdf:type rdf:resource="#SmallRemovalSpellCard"/>
   <rdf:type rdf:resource="#SwarmControlCard"/>
+  <rdf:type rdf:resource="#SmallRemovalSpellCard"/>
   <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasElixirCost>
   <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Common</hasRarity>
 </owl:NamedIndividual>
@@ -506,9 +515,8 @@
 
 <owl:NamedIndividual rdf:about="#Cannon">
   <rdf:type rdf:resource="#Card"/>
-  <rdf:type rdf:resource="#BuildingCard"/>
-  <rdf:type rdf:resource="#GroundDefenceCard"/>
   <rdf:type rdf:resource="#TankAnswerCard"/>
+  <rdf:type rdf:resource="#BuildingCard"/>
   <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasElixirCost>
   <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Common</hasRarity>
 </owl:NamedIndividual>
@@ -539,8 +547,8 @@
 
 <owl:NamedIndividual rdf:about="#MiniPEKKA">
   <rdf:type rdf:resource="#Card"/>
-  <rdf:type rdf:resource="#TankCard"/>
   <rdf:type rdf:resource="#TankAnswerCard"/>
+  <rdf:type rdf:resource="#TankCard"/>
   <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hasElixirCost>
   <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rare</hasRarity>
 </owl:NamedIndividual>
@@ -555,7 +563,7 @@
   <containsCard rdf:resource="#IceSpirit"/>
   <containsCard rdf:resource="#IceGolem"/>
   <containsCard rdf:resource="#MiniPEKKA"/>
-  <rdf:type rdf:resource="#BalancedDeck"/>
+  <rdf:type rdf:resource="#DeckWithAirCoverage"/>
   <rdf:type rdf:resource="#F2PFriendlyDeck"/>
   <rdf:type rdf:resource="#CycleDeck"/>
   <hasAverageElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.625</hasAverageElixirCost>

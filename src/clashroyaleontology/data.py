@@ -36,7 +36,6 @@ with onto:
     cannon = create_card(
         "Cannon",
         BuildingCard,
-        GroundDefenceCard,
         TankAnswerCard,
         hasElixirCost=3,
         hasRarity="Common",
