@@ -16,7 +16,7 @@ with onto:
         AirTargetingCard,
         SupportTroop,
         MediumSpellBaitCard,
-        hasElixirCost=3,
+        hasElixirCost=4,
         hasRarity="Rare",
     )
 
