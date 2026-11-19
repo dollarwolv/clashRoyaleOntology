@@ -13,36 +13,222 @@
   <rdfs:range rdf:resource="#Card"/>
 </owl:ObjectProperty>
 
+<owl:DatatypeProperty rdf:about="#hasElixirCost">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Card"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasRarity">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Card"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasAverageElixirCost">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Deck"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
 <owl:Class rdf:about="#Card">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Deck">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#containsCard"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">8</owl:cardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
 </owl:Class>
 
-<owl:Class rdf:about="#AirTargetingCard">
+<owl:Class rdf:about="#LegendaryCard">
   <rdfs:subClassOf rdf:resource="#Card"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Card"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasRarity"/>
+          <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Legendary</owl:hasValue>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#TroopCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TankCard">
+  <rdfs:subClassOf rdf:resource="#TroopCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BigTankCard">
+  <rdfs:subClassOf rdf:resource="#TankCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SwarmCard">
+  <rdfs:subClassOf rdf:resource="#TroopCard"/>
 </owl:Class>
 
 <owl:Class rdf:about="#SpellCard">
   <rdfs:subClassOf rdf:resource="#Card"/>
 </owl:Class>
 
-<owl:Class rdf:about="#GroundTroopCard">
+<owl:Class rdf:about="#SmallSpellCard">
+  <rdfs:subClassOf rdf:resource="#SpellCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumSpellCard">
+  <rdfs:subClassOf rdf:resource="#SpellCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BigSpellCard">
+  <rdfs:subClassOf rdf:resource="#SpellCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#DamagingSpellCard">
+  <rdfs:subClassOf rdf:resource="#SpellCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SmallRemovalSpellCard">
+  <rdfs:subClassOf rdf:resource="#SmallSpellCard"/>
+  <rdfs:subClassOf rdf:resource="#DamagingSpellCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BuildingCard">
   <rdfs:subClassOf rdf:resource="#Card"/>
 </owl:Class>
 
-<owl:Class rdf:about="#TankCard">
+<owl:Class rdf:about="#SiegeBuildingCard">
+  <rdfs:subClassOf rdf:resource="#BuildingCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SpawnerBuildingCard">
+  <rdfs:subClassOf rdf:resource="#BuildingCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#AirTargetingCard">
   <rdfs:subClassOf rdf:resource="#Card"/>
 </owl:Class>
 
-<owl:Class rdf:about="#SwarmCard">
+<owl:Class rdf:about="#GroundTargetingCard">
   <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BuildingTargetingCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#RangedAttackCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MeleeAttackCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SmallSpellBaitCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumSpellBaitCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#WinConditionCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SiegeSupportCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TankAnswerCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SwarmControlCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SupportTroop">
+  <rdfs:subClassOf rdf:resource="#TroopCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#AirDefenceCard">
+  <rdfs:subClassOf rdf:resource="#TroopCard"/>
+  <rdfs:subClassOf rdf:resource="#AirTargetingCard"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#TroopCard"/>
+        <rdf:Description rdf:about="#AirTargetingCard"/>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#GroundDefenceCard">
+  <rdfs:subClassOf rdf:resource="#GroundTargetingCard"/>
+</owl:Class>
+
+<owl:Class rdf:about="#CounterPushTroop">
+  <rdfs:subClassOf rdf:resource="#TroopCard"/>
 </owl:Class>
 
 <owl:Class rdf:about="#FlyingCard">
   <rdfs:subClassOf rdf:resource="#Card"/>
+</owl:Class>
+
+<owl:Class rdf:about="#CycleCard">
+  <rdfs:subClassOf rdf:resource="#Card"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Card"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasElixirCost"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</xsd:maxInclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
+
+<owl:Class rdf:about="#F2PFriendlyDeck">
+  <rdfs:subClassOf rdf:resource="#Deck"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Deck"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:onClass rdf:resource="#LegendaryCard"/>
+          <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:maxQualifiedCardinality>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
 </owl:Class>
 
 <owl:Class rdf:about="#DeckWithAirCoverage">
@@ -60,19 +246,341 @@
   </owl:equivalentClass>
 </owl:Class>
 
-<owl:NamedIndividual rdf:about="#Arrows">
-  <rdf:type rdf:resource="#SpellCard"/>
-</owl:NamedIndividual>
+<owl:Class rdf:about="#BalancedDeck">
+  <rdfs:subClassOf rdf:resource="#Deck"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Deck"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#WinConditionCard"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#AirDefenceCard"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#GroundDefenceCard"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#TankAnswerCard"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#SwarmControlCard"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#DamagingSpellCard"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#DeckWithAirCoverage"/>
+</owl:Class>
+
+<owl:Class rdf:about="#CycleDeck">
+  <rdfs:subClassOf rdf:resource="#Deck"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Deck"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#WinConditionCard"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:onClass rdf:resource="#CycleCard"/>
+          <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:minQualifiedCardinality>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasAverageElixirCost"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3.5</xsd:maxInclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#MetaDeck"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BeatdownDeck">
+  <rdfs:subClassOf rdf:resource="#Deck"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Deck"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom>
+            <owl:Class>
+              <owl:intersectionOf rdf:parseType="Collection">
+                <rdf:Description rdf:about="#BigTankCard"/>
+                <rdf:Description rdf:about="#WinConditionCard"/>
+              </owl:intersectionOf>
+            </owl:Class>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:onClass rdf:resource="#SupportTroop"/>
+          <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#DamagingSpellCard"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#MetaDeck"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SmallSpellBaitDeck">
+  <rdfs:subClassOf rdf:resource="#Deck"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Deck"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#WinConditionCard"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:onClass rdf:resource="#SmallSpellBaitCard"/>
+          <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:minQualifiedCardinality>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#SmallRemovalSpellCard"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#MetaDeck"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumSpellBaitDeck">
+  <rdfs:subClassOf rdf:resource="#Deck"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Deck"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#WinConditionCard"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:onClass rdf:resource="#MediumSpellBaitCard"/>
+          <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:minQualifiedCardinality>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#DamagingSpellCard"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#MetaDeck"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SiegeDeck">
+  <rdfs:subClassOf rdf:resource="#Deck"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Deck"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom>
+            <owl:Class>
+              <owl:intersectionOf rdf:parseType="Collection">
+                <rdf:Description rdf:about="#SiegeBuildingCard"/>
+                <rdf:Description rdf:about="#WinConditionCard"/>
+              </owl:intersectionOf>
+            </owl:Class>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:onClass rdf:resource="#SiegeSupportCard"/>
+          <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#DamagingSpellCard"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#MetaDeck"/>
+</owl:Class>
+
+<owl:Class rdf:about="#CounterPushDeck">
+  <rdfs:subClassOf rdf:resource="#Deck"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Deck"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#WinConditionCard"/>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:onClass rdf:resource="#CounterPushTroop"/>
+          <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#containsCard"/>
+          <owl:someValuesFrom rdf:resource="#DamagingSpellCard"/>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#MetaDeck"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MetaDeck">
+  <rdfs:subClassOf rdf:resource="#Deck"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#CycleDeck"/>
+        <rdf:Description rdf:about="#BeatdownDeck"/>
+        <rdf:Description rdf:about="#SmallSpellBaitDeck"/>
+        <rdf:Description rdf:about="#MediumSpellBaitDeck"/>
+        <rdf:Description rdf:about="#SiegeDeck"/>
+        <rdf:Description rdf:about="#CounterPushDeck"/>
+      </owl:unionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+</owl:Class>
 
 <owl:NamedIndividual rdf:about="#Musketeer">
+  <rdf:type rdf:resource="#Card"/>
   <rdf:type rdf:resource="#AirTargetingCard"/>
+  <rdf:type rdf:resource="#MediumSpellBaitCard"/>
+  <rdf:type rdf:resource="#TroopCard"/>
+  <rdf:type rdf:resource="#SupportTroop"/>
+  <rdf:type rdf:resource="#AirDefenceCard"/>
+  <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasElixirCost>
+  <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rare</hasRarity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Arrows">
+  <rdf:type rdf:resource="#Card"/>
+  <rdf:type rdf:resource="#AirTargetingCard"/>
+  <rdf:type rdf:resource="#SmallRemovalSpellCard"/>
+  <rdf:type rdf:resource="#SwarmControlCard"/>
+  <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasElixirCost>
+  <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Common</hasRarity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HogRider">
+  <rdf:type rdf:resource="#Card"/>
+  <rdf:type rdf:resource="#WinConditionCard"/>
+  <rdf:type rdf:resource="#TroopCard"/>
+  <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hasElixirCost>
+  <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rare</hasRarity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cannon">
+  <rdf:type rdf:resource="#Card"/>
+  <rdf:type rdf:resource="#BuildingCard"/>
+  <rdf:type rdf:resource="#GroundDefenceCard"/>
+  <rdf:type rdf:resource="#TankAnswerCard"/>
+  <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</hasElixirCost>
+  <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Common</hasRarity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Skeletons">
+  <rdf:type rdf:resource="#Card"/>
+  <rdf:type rdf:resource="#SwarmCard"/>
+  <rdf:type rdf:resource="#CycleCard"/>
+  <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hasElixirCost>
+  <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Common</hasRarity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#IceSpirit">
+  <rdf:type rdf:resource="#Card"/>
+  <rdf:type rdf:resource="#TroopCard"/>
+  <rdf:type rdf:resource="#CycleCard"/>
+  <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</hasElixirCost>
+  <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Common</hasRarity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#IceGolem">
+  <rdf:type rdf:resource="#Card"/>
+  <rdf:type rdf:resource="#TankCard"/>
+  <rdf:type rdf:resource="#CycleCard"/>
+  <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</hasElixirCost>
+  <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rare</hasRarity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MiniPEKKA">
+  <rdf:type rdf:resource="#Card"/>
+  <rdf:type rdf:resource="#TankCard"/>
+  <rdf:type rdf:resource="#TankAnswerCard"/>
+  <hasElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</hasElixirCost>
+  <hasRarity rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rare</hasRarity>
 </owl:NamedIndividual>
 
 <owl:NamedIndividual rdf:about="#MusketeerDeck">
   <rdf:type rdf:resource="#Deck"/>
   <containsCard rdf:resource="#Musketeer"/>
-  <rdf:type rdf:resource="#DeckWithAirCoverage"/>
+  <containsCard rdf:resource="#Arrows"/>
+  <containsCard rdf:resource="#HogRider"/>
+  <containsCard rdf:resource="#Cannon"/>
+  <containsCard rdf:resource="#Skeletons"/>
+  <containsCard rdf:resource="#IceSpirit"/>
+  <containsCard rdf:resource="#IceGolem"/>
+  <containsCard rdf:resource="#MiniPEKKA"/>
+  <rdf:type rdf:resource="#BalancedDeck"/>
+  <rdf:type rdf:resource="#F2PFriendlyDeck"/>
+  <rdf:type rdf:resource="#CycleDeck"/>
+  <hasAverageElixirCost rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.625</hasAverageElixirCost>
 </owl:NamedIndividual>
+
+<owl:AllDifferent>
+  <owl:distinctMembers rdf:parseType="Collection">
+    <rdf:Description rdf:about="#Musketeer"/>
+    <rdf:Description rdf:about="#Arrows"/>
+    <rdf:Description rdf:about="#HogRider"/>
+    <rdf:Description rdf:about="#Cannon"/>
+    <rdf:Description rdf:about="#Skeletons"/>
+    <rdf:Description rdf:about="#IceSpirit"/>
+    <rdf:Description rdf:about="#IceGolem"/>
+    <rdf:Description rdf:about="#MiniPEKKA"/>
+  </owl:distinctMembers>
+</owl:AllDifferent>
+
+<owl:AllDisjointClasses>
+  <owl:members rdf:parseType="Collection">
+    <rdf:Description rdf:about="#TroopCard"/>
+    <rdf:Description rdf:about="#SpellCard"/>
+    <rdf:Description rdf:about="#BuildingCard"/>
+  </owl:members>
+</owl:AllDisjointClasses>
 
 
 </rdf:RDF>
